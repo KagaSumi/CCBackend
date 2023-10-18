@@ -11,8 +11,8 @@ app.instance_path = Path(".").resolve()
 db.init_app(app)
 
 
-@app.route("/api/product/<string:name>", methods=["GET"])
-def api_get_product(name):
+@app.route("/")
+def api_get_product():
     """Returns the user the product that belongs to the specified name.
 
     Args:
@@ -21,7 +21,7 @@ def api_get_product(name):
     Returns:
         Response : A response of the outcome of the get operation
     """
-    product = db.session.get(Product, name.lower())
+    product = db.session.get(Product, "apple")
     if not product:
         return ("Product not found", 404)
     product_json = product.to_dict()
